@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirecting...</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #f5f5f5;
+      color: #333;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 480px;
+      width: 90%;
+    }
+    h1 { margin-top: 0; font-size: 1.4rem; }
+    p  { color: #555; }
+    a  { color: #1a73e8; word-break: break-all; }
+    .fallback { margin-top: 1.5rem; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Redirecting you to your form&hellip;</h1>
+    <p>Please wait a moment.</p>
+    <p class="fallback" id="fallback" style="display:none">
+      Not redirected automatically?
+      <a id="direct-link" href="#">Click here</a>
+    </p>
+  </div>
+
+  <script>
+    // ─────────────────────────────────────────────────────────
+    //  EDIT YOUR FORM LINKS HERE
+    //  Replace each placeholder URL with your actual Google Form URL.
+    // ─────────────────────────────────────────────────────────
+    var forms = [
+      "https://docs.google.com/forms/d/e/FORM_ID_1/viewform",
+      "https://docs.google.com/forms/d/e/FORM_ID_2/viewform",
+      "https://docs.google.com/forms/d/e/FORM_ID_3/viewform",
+      "https://docs.google.com/forms/d/e/FORM_ID_4/viewform",
+      "https://docs.google.com/forms/d/e/FORM_ID_5/viewform",
+      "https://docs.google.com/forms/d/e/FORM_ID_6/viewform"
+    ];
+    // ─────────────────────────────────────────────────────────
+
+    var target = forms[Math.floor(Math.random() * forms.length)];
+
+    // Show a manual link after 1.5 s in case the redirect is blocked
+    setTimeout(function () {
+      var link = document.getElementById("direct-link");
+      link.href = target;
+      document.getElementById("fallback").style.display = "block";
+    }, 1500);
+
+    window.location.href = target;
+  </script>
+
+  <noscript>
+    <style>.card p { display: none; }</style>
+    <div class="card" style="margin-top:1rem">
+      <h1>JavaScript is disabled</h1>
+      <p style="display:block">Please enable JavaScript so the page can assign you a form,
+      or contact the organiser for a direct link.</p>
+    </div>
+  </noscript>
+</body>
+</html>
